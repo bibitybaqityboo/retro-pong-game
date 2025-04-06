@@ -31,14 +31,17 @@ A modern implementation of the classic Pong game with an AI opponent powered by 
 
 ### Playing Online
 
-The game is hosted at [GitHub Pages URL] and can be played directly in your browser without installation.
+The game is hosted online and can be played directly in your browser at:
+[https://bibitybaqityboo.github.io/retro-pong-game/](https://bibitybaqityboo.github.io/retro-pong-game/)
+
+No installation required - just visit the URL and start playing!
 
 ### Local Installation
 
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/retro-pong.git
-cd retro-pong
+git clone https://github.com/bibitybaqityboo/retro-pong-game.git
+cd retro-pong-game
 ```
 
 2. Open `index.html` in your web browser to start playing, or use a local server:
@@ -105,4 +108,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Original Pong game created by Allan Alcorn and Atari, Inc.
 - Sound effects from [source]
-- Font: "Press Start 2P" from Google Fonts 
+- Font: "Press Start 2P" from Google Fonts
