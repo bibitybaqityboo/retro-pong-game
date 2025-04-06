@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Pong Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Start Menu -->
+        <div id="start-menu">
+            <h1 class="game-title">RETRO PONG</h1>
+            <div class="menu-options">
+                <button id="start-classic" class="menu-button">Classic Mode</button>
+                <button id="start-survival" class="menu-button">Survival Mode</button>
+                <div class="difficulty-selector">
+                    <span>Difficulty:</span>
+                    <div class="difficulty-buttons">
+                        <button id="easy" class="difficulty-btn selected">Easy</button>
+                        <button id="medium" class="difficulty-btn">Medium</button>
+                        <button id="hard" class="difficulty-btn">Hard</button>
+                    </div>
+                </div>
+                <button id="leaderboard-btn" class="menu-button">Leaderboard</button>
+                <button id="settings-btn" class="menu-button">Settings</button>
+            </div>
+        </div>
+
+        <!-- Game Canvas -->
+        <canvas id="pongCanvas"></canvas>
+
+        <!-- Game UI Overlay -->
+        <div id="game-ui" class="hidden">
+            <div id="scoreboard">
+                <div id="player-score">0</div>
+                <div id="game-timer">00:00</div>
+                <div id="ai-score">0</div>
+            </div>
+            <div id="commentary" class="commentary"></div>
+            <div id="game-controls">
+                <button id="pause-btn" class="control-btn">❚❚</button>
+                <button id="mute-btn" class="control-btn">🔊</button>
+                <button id="menu-btn" class="control-btn">≡</button>
+            </div>
+        </div>
+
+        <!-- Pause Menu -->
+        <div id="pause-menu" class="hidden">
+            <div class="pause-content">
+                <h2>Game Paused</h2>
+                <button id="resume-btn" class="menu-button">Resume</button>
+                <button id="restart-btn" class="menu-button">Restart</button>
+                <button id="exit-to-menu" class="menu-button">Exit to Menu</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over" class="hidden">
+            <h2 id="winner-text">You Win!</h2>
+            <div id="final-score">10 - 8</div>
+            <div id="game-stats">
+                <div>Time Played: <span id="time-played">03:24</span></div>
+                <div>Longest Rally: <span id="longest-rally">12</span></div>
+            </div>
+            <div id="coaching-tip" class="coaching-tip">
+                Try to anticipate the ball's trajectory for better positioning!
+            </div>
+            <div class="game-over-buttons">
+                <button id="play-again" class="menu-button">Play Again</button>
+                <button id="save-score" class="menu-button">Save Score</button>
+                <button id="go-to-menu" class="menu-button">Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="hidden">
+            <h2>Leaderboard</h2>
+            <div class="leaderboard-tabs">
+                <button data-mode="classic" class="leaderboard-tab selected">Classic</button>
+                <button data-mode="survival" class="leaderboard-tab">Survival</button>
+            </div>
+            <div id="leaderboard-list">
+                <!-- Leaderboard entries will be inserted here by JavaScript -->
+            </div>
+            <button id="leaderboard-back" class="menu-button">Back to Menu</button>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="hidden">
+            <h2>Settings</h2>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <span>Sound Effects:</span>
+                    <label class="switch">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Theme:</span>
+                    <select id="theme-selector">
+                        <option value="retro">Retro</option>
+                        <option value="neon">Neon</option>
+                        <option value="minimal">Minimal</option>
+                        <option value="matrix">Matrix</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <span>AI Commentary:</span>
+                    <label class="switch">
+                        <input type="checkbox" id="commentary-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <span>Controls:</span>
+                    <select id="control-selector">
+                        <option value="arrows">Arrow Keys</option>
+                        <option value="wasd">W/S Keys</option>
+                        <option value="both">Both</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <span>Ball Speed:</span>
+                    <input type="range" id="ball-speed" min="1" max="5" value="3">
+                </div>
+            </div>
+            <button id="settings-back" class="menu-button">Save & Return</button>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls" class="hidden">
+            <div id="touch-up" class="touch-control">▲</div>
+            <div id="touch-down" class="touch-control">▼</div>
+        </div>
+
+        <!-- Konamai Code Easter Egg Indicator -->
+        <div id="konami-indicator" class="hidden">
+            <div class="konami-sequence"></div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="paddle-hit" src="assets/paddle-hit.mp3" preload="auto"></audio>
+    <audio id="wall-hit" src="assets/wall-hit.mp3" preload="auto"></audio>
+    <audio id="score-sound" src="assets/score.mp3" preload="auto"></audio>
+    <audio id="game-start" src="assets/game-start.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="assets/game-over.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html> 
